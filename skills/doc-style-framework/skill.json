@@ -1,0 +1,36 @@
+{
+    "name": "doc-style-framework",
+    "description": "套用統一的文件風格系統（包含側邊欄 TOC、仿生閱讀、自適應圖表等），並自動進行文件複雜度評估。",
+    "version": "1.0.0",
+    "entrypoint": "prompt.md",
+    "parameters": {
+        "type": "object",
+        "properties": {
+            "content": {
+                "type": "string",
+                "description": "需要被套用標準樣式、重新編排或評估複雜度的原始文件內容。"
+            },
+            "accent_color": {
+                "type": "string",
+                "enum": [
+                    "Green",
+                    "Blue",
+                    "Purple",
+                    "Coral",
+                    "Amber",
+                    "Teal",
+                    "Gray",
+                    "Pink"
+                ],
+                "description": "指定文件的核心風格色系。預設為 Green。"
+            },
+            "is_nd_profile": {
+                "type": "boolean",
+                "description": "是否強制啟用針對神經多樣性/閱讀障礙優化的仿生閱讀 (Bionic Reading) 模式。"
+            }
+        },
+        "required": [
+            "content"
+        ]
+    }
+}

@@ -1,0 +1,1 @@
+I'm AuDHD + visual-spatial learner + dyslexia + CAPD

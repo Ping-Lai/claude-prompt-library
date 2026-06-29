@@ -38,6 +38,8 @@ We leverage AI's structuring capabilities to **reduce everyday cognitive load an
 ### 🤝 Contributing
 Contributions from the ND community are highly welcome! Please feel free to open an **Issue** or submit a **Pull Request** if you have prompts that help with your daily cognitive workflows.
 
+### View demo
+ [👉 HTML Demo](https://github.com/Ping-Lai/claude-prompt-library/blob/main/demo/anchor-demo.html)
 ---
 
 ## 🇹🇼 中文說明 (Traditional Chinese)
@@ -72,5 +74,9 @@ Contributions from the ND community are highly welcome! Please feel free to open
 
 ### 🤝 貢獻與反饋
 歡迎提交 **Pull Request** 分享對自己大腦有幫助的提示詞！若在使用過程中發現任何排版會造成視覺疲勞，歡迎提交 **Issue** 讓我們持續優化。
+
+
+### 效果呈現: 
+[👉 點此線上預覽 HTML Demo 成品](https://github.com/Ping-Lai/claude-prompt-library/blob/main/demo/anchor-demo.html)
 
 *This project is licensed under the [MIT License](LICENSE).*

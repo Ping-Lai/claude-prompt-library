@@ -1,59 +1,153 @@
 <!doctype html>
 <html lang="zh-Hant">
+
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>read-anchor demo — 官方 opacity 模型</title>
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,400;0,600;0,700&family=IBM+Plex+Mono:wght@400;600&display=swap');
-  :root{ --font-body:'Atkinson Hyperlegible Next',system-ui,sans-serif;
-    --bg:#1A1C22; --text-primary:#D0D4DE; --text-secondary:#9298A8; }
-  *{box-sizing:border-box}
-  body{margin:0; font-family:var(--font-body); background:#0E0F13; color:#cdd2dc;
-    line-height:1.75; letter-spacing:.02em; word-spacing:.05em; padding:32px clamp(16px,4vw,48px)}
-  h1{font-size:1.4rem; margin:0 0 4px}
-  .sub{color:#8A8F9C; font-size:.9rem; margin:0 0 24px}
-  h2{font-size:1.02rem; margin:30px 0 12px; color:#C9CDD8; border-bottom:1px solid #2A2C34; padding-bottom:7px}
-  .panel{border-radius:10px; padding:20px 24px; margin-bottom:16px; background:var(--bg); color:var(--text-primary);
-    border:1px solid rgba(128,128,128,.25); font-size:1rem}
-  .panel.light{--bg:#FAF8F5; --text-primary:#2D2F36; --text-secondary:#555860; border-color:#D5D0C8}
-  /* === 框架實際規則 === */
-  .read-bionic { color: var(--text-secondary); }              /* field 壓暗 = Opacity 旋鈕 */
-  .read-anchor { color: var(--text-primary); font-weight: 700; }  /* fixation = 全亮 + 粗 */
-  .lbl{font-size:.72rem; font-family:monospace; opacity:.6; margin-bottom:8px; text-transform:uppercase; letter-spacing:.05em}
-  .cmp{display:grid; grid-template-columns:1fr 1fr; gap:14px}
-  @media(max-width:680px){.cmp{grid-template-columns:1fr}}
-  .tag{font-family:monospace; font-size:.66rem; padding:1px 7px; border-radius:4px}
-  .tag.now{background:#0F6E56; color:#E1F5EE} .tag.old{background:#5a4a20; color:#EF9F27}
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>read-anchor demo — bionic (opacity 模型)</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,400;0,600;0,700&family=IBM+Plex+Mono:wght@400;600&display=swap');
+
+    :root {
+      --font-body: 'Atkinson Hyperlegible Next', system-ui, sans-serif;
+      --bg: #1A1C22;
+      --text-primary: #D0D4DE;
+      --text-secondary: #9298A8;
+    }
+
+    * {
+      box-sizing: border-box
+    }
+
+    body {
+      margin: 0;
+      font-family: var(--font-body);
+      background: #0E0F13;
+      color: #cdd2dc;
+      line-height: 1.85;
+      letter-spacing: .02em;
+      word-spacing: .05em;
+      padding: 32px clamp(16px, 4vw, 48px)
+    }
+
+    h1 {
+      font-size: 1.4rem;
+      margin: 0 0 4px
+    }
+
+    .sub {
+      color: #8A8F9C;
+      font-size: .9rem;
+      margin: 0 0 26px
+    }
+
+    h2 {
+      font-size: 1rem;
+      margin: 30px 0 12px;
+      color: #C9CDD8;
+      border-bottom: 1px solid #2A2C34;
+      padding-bottom: 7px
+    }
+
+    .panel {
+      border-radius: 10px;
+      padding: 22px 26px;
+      margin-bottom: 16px;
+      background: var(--bg);
+      color: var(--text-primary);
+      border: 1px solid rgba(128, 128, 128, .25);
+      font-size: 1.05rem
+    }
+
+    .panel.light {
+      --bg: #FAF8F5;
+      --text-primary: #2D2F36;
+      --text-secondary: #555860;
+      border-color: #D5D0C8
+    }
+
+    .panel p {
+      margin: 0 0 14px
+    }
+
+    .panel p:last-child {
+      margin: 0
+    }
+
+    /* === 框架實際 rule（opacity 模型，無高亮色）=== */
+    .read-bionic {
+      color: var(--text-secondary);
+    }
+
+    .read-anchor {
+      color: var(--text-primary);
+      font-weight: 700;
+    }
+
+    .lbl {
+      font-size: .7rem;
+      font-family: monospace;
+      opacity: .55;
+      margin-bottom: 10px;
+      letter-spacing: .05em
+    }
+  </style>
 </head>
+
 <body>
-  <h1>read-anchor — 官方 opacity 模型</h1>
-  <p class="sub">機制：<code style="font-family:monospace">.read-bionic</code> 把周邊壓暗到 secondary、<code style="font-family:monospace">.read-anchor</code> 全亮 primary + 700。<b>無高亮色</b>。對比＝全亮粗體 vs 壓暗常規。</p>
+  <h1>Bionic Reading — 自動啟用效果（AuDHD / dyslexia profile）</h1>
+  <p class="sub">opacity 模型：周邊壓暗 + 錨點全亮粗體、無高亮色。中文錨整詞、英文錨字頭。</p>
 
-  <h2>1 · 純英文（你說「看不出差異」那個情境）</h2>
-  <div class="cmp">
-    <div class="panel">
-      <div class="lbl">opacity 模型 <span class="tag now">現在</span></div>
-      <p class="read-bionic"><b class="read-anchor">The</b> <b class="read-anchor">con</b>trol <b class="read-anchor">loop</b> <b class="read-anchor">run</b>s <b class="read-anchor">und</b>er <b class="read-anchor">SCHED_FIFO</b> <b class="read-anchor">pri</b>ority 80, <b class="read-anchor">tri</b>ggers <b class="read-anchor">fai</b>lover <b class="read-anchor">whe</b>n <b class="read-anchor">jit</b>ter <b class="read-anchor">exc</b>eeds 50 µs, <b class="read-anchor">and</b> <b class="read-anchor">per</b>forms <b class="read-anchor">bum</b>pless <b class="read-anchor">tra</b>nsfer.</p>
-    </div>
-    <div class="panel">
-      <div class="lbl">舊：變亮色 #D8DBE4，不壓暗 <span class="tag old">之前</span></div>
-      <p><b style="color:#D8DBE4;font-weight:600">The</b> <b style="color:#D8DBE4;font-weight:600">con</b>trol <b style="color:#D8DBE4;font-weight:600">loop</b> <b style="color:#D8DBE4;font-weight:600">run</b>s <b style="color:#D8DBE4;font-weight:600">und</b>er <b style="color:#D8DBE4;font-weight:600">SCHED_FIFO</b> <b style="color:#D8DBE4;font-weight:600">pri</b>ority 80, <b style="color:#D8DBE4;font-weight:600">tri</b>ggers <b style="color:#D8DBE4;font-weight:600">fai</b>lover...（亮度差幾乎看不出）</p>
-    </div>
-  </div>
-
-  <h2>2 · Dark theme（中英混排 RT 內文）</h2>
+  <h2>Dark theme</h2>
   <div class="panel">
-    <div class="lbl">dark · .read-bionic</div>
-    <p class="read-bionic">這個 <b class="read-anchor">控制迴圈</b> 以 <b class="read-anchor">SCHED_FIFO</b>、<b class="read-anchor">pri</b>ority 80 在 <b class="read-anchor">Core 1</b> 上<b class="read-anchor">運行</b>，<b class="read-anchor">週期 1 ms</b>；當 <b class="read-anchor">cyc</b>lictest <b class="read-anchor">jit</b>ter 超過 <b class="read-anchor">50 µs</b> 時，<b class="read-anchor">fai</b>lover <b class="read-anchor">sta</b>te <b class="read-anchor">mac</b>hine 會 <b class="read-anchor">觸發</b> 並切到 <b class="read-anchor">sta</b>ndby CPU，整個 <b class="read-anchor">bum</b>pless <b class="read-anchor">tra</b>nsfer 不能掉 <b class="read-anchor">con</b>trol <b class="read-anchor">loop</b>。</p>
+    <div class="lbl">中文</div>
+    <p class="read-bionic">我是 <b class="read-anchor">AuDHD</b>（<b class="read-anchor">autism</b> + <b
+        class="read-anchor">ADHD</b>），同時是<b class="read-anchor">視覺空間型</b><b class="read-anchor">學習者</b>（visual-spatial
+      learner），有 <b class="read-anchor">dyslexia</b>（<b class="read-anchor">閱讀障礙</b>）與 <b
+        class="read-anchor">CAPD</b>（<b class="read-anchor">中樞聽覺處理</b><b class="read-anchor">障礙</b>）。我用<b
+        class="read-anchor">圖像</b>與<b class="read-anchor">結構</b><b class="read-anchor">理解</b>世界，把<b
+        class="read-anchor">文字</b>轉成<b class="read-anchor">空間關係</b>來<b class="read-anchor">記憶</b>；<b
+        class="read-anchor">閱讀</b><b class="read-anchor">長段文字</b>容易<b class="read-anchor">疲勞</b>，所以需要<b
+        class="read-anchor">錨點</b>引導<b class="read-anchor">視線</b>。</p>
+    <div class="lbl">English</div>
+    <p class="read-bionic">I am <b class="read-anchor">AuDHD</b> (<b class="read-anchor">aut</b>ism + <b
+        class="read-anchor">ADHD</b>), a <b class="read-anchor">vis</b>ual-<b class="read-anchor">spa</b>tial <b
+        class="read-anchor">lear</b>ner with <b class="read-anchor">dys</b>lexia and <b class="read-anchor">CAPD</b> (<b
+        class="read-anchor">cen</b>tral <b class="read-anchor">aud</b>itory <b class="read-anchor">proc</b>essing <b
+        class="read-anchor">dis</b>order). I <b class="read-anchor">und</b>erstand the <b class="read-anchor">wor</b>ld
+      through <b class="read-anchor">ima</b>ges and <b class="read-anchor">struc</b>ture, <b
+        class="read-anchor">map</b>ping <b class="read-anchor">te</b>xt into <b class="read-anchor">spa</b>tial <b
+        class="read-anchor">relat</b>ionships to <b class="read-anchor">rem</b>ember it. <b
+        class="read-anchor">Read</b>ing <b class="read-anchor">lo</b>ng <b class="read-anchor">pass</b>ages <b
+        class="read-anchor">ti</b>res me, so I <b class="read-anchor">re</b>ly on <b class="read-anchor">anc</b>hors to
+      <b class="read-anchor">gui</b>de my <b class="read-anchor">eyes</b>.</p>
   </div>
 
-  <h2>3 · Light theme（同段）</h2>
+  <h2>Light theme</h2>
   <div class="panel light">
-    <div class="lbl">light · .read-bionic</div>
-    <p class="read-bionic">這個 <b class="read-anchor">控制迴圈</b> 以 <b class="read-anchor">SCHED_FIFO</b>、<b class="read-anchor">pri</b>ority 80 在 <b class="read-anchor">Core 1</b> 上<b class="read-anchor">運行</b>，<b class="read-anchor">週期 1 ms</b>；當 <b class="read-anchor">cyc</b>lictest <b class="read-anchor">jit</b>ter 超過 <b class="read-anchor">50 µs</b> 時，<b class="read-anchor">fai</b>lover <b class="read-anchor">sta</b>te <b class="read-anchor">mac</b>hine 會 <b class="read-anchor">觸發</b> 並切到 <b class="read-anchor">sta</b>ndby CPU，整個 <b class="read-anchor">bum</b>pless <b class="read-anchor">tra</b>nsfer 不能掉 <b class="read-anchor">con</b>trol <b class="read-anchor">loop</b>。</p>
+    <div class="lbl">中文</div>
+    <p class="read-bionic">我是 <b class="read-anchor">AuDHD</b>（<b class="read-anchor">autism</b> + <b
+        class="read-anchor">ADHD</b>），同時是<b class="read-anchor">視覺空間型</b><b class="read-anchor">學習者</b>（visual-spatial
+      learner），有 <b class="read-anchor">dyslexia</b>（<b class="read-anchor">閱讀障礙</b>）與 <b
+        class="read-anchor">CAPD</b>（<b class="read-anchor">中樞聽覺處理</b><b class="read-anchor">障礙</b>）。我用<b
+        class="read-anchor">圖像</b>與<b class="read-anchor">結構</b><b class="read-anchor">理解</b>世界，把<b
+        class="read-anchor">文字</b>轉成<b class="read-anchor">空間關係</b>來<b class="read-anchor">記憶</b>；<b
+        class="read-anchor">閱讀</b><b class="read-anchor">長段文字</b>容易<b class="read-anchor">疲勞</b>，所以需要<b
+        class="read-anchor">錨點</b>引導<b class="read-anchor">視線</b>。</p>
+    <div class="lbl">English</div>
+    <p class="read-bionic">I am <b class="read-anchor">AuDHD</b> (<b class="read-anchor">aut</b>ism + <b
+        class="read-anchor">ADHD</b>), a <b class="read-anchor">vis</b>ual-<b class="read-anchor">spa</b>tial <b
+        class="read-anchor">lear</b>ner with <b class="read-anchor">dys</b>lexia and <b class="read-anchor">CAPD</b> (<b
+        class="read-anchor">cen</b>tral <b class="read-anchor">aud</b>itory <b class="read-anchor">proc</b>essing <b
+        class="read-anchor">dis</b>order). I <b class="read-anchor">und</b>erstand the <b class="read-anchor">wor</b>ld
+      through <b class="read-anchor">ima</b>ges and <b class="read-anchor">struc</b>ture, <b
+        class="read-anchor">map</b>ping <b class="read-anchor">te</b>xt into <b class="read-anchor">spa</b>tial <b
+        class="read-anchor">relat</b>ionships to <b class="read-anchor">rem</b>ember it. <b
+        class="read-anchor">Read</b>ing <b class="read-anchor">lo</b>ng <b class="read-anchor">pass</b>ages <b
+        class="read-anchor">ti</b>res me, so I <b class="read-anchor">re</b>ly on <b class="read-anchor">anc</b>hors to
+      <b class="read-anchor">gui</b>de my <b class="read-anchor">eyes</b>.</p>
   </div>
 
 </body>
+
 </html>

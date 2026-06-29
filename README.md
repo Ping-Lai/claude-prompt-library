@@ -34,6 +34,8 @@ We leverage AI's structuring capabilities to **reduce everyday cognitive load an
     ln -s "$(pwd)/skills/doc_style_framework" ~/.claude/skills/doc_style_framework
     ```
 
+* Or download [./skills/doc_style_framework.zip](./skills/doc_style_framework.zip) and upload it to CLAUDE Desktop App -> Customize -> Skills -> `+` -> create skill -> upload a skill.
+
 ### Trigger Conditions
 
 #### A. When the global protocol is active (`CLAUDE.md` configured with ND profile):
@@ -82,6 +84,7 @@ Contributions from the ND community are highly welcome! Please feel free to open
     cd 你的專案名稱
     ln -s "\$(pwd)/skills/doc_style_framework" ~/.claude/skills/doc_style_framework
     ```
+* 或 download [./skills/doc_style_framework.zip](./skills/doc_style_framework.zip) 於 CLAUDE 桌面程式 -> Customize -> Skills -> `+` -> create skill -> upload a skill
 
 ### 觸發方式
 
